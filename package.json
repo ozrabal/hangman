@@ -16,12 +16,14 @@
     "css-loader": "0.28.7",
     "dotenv": "4.0.0",
     "eslint": "4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
     "eslint-config-react-app": "^2.0.1",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.39.1",
     "eslint-plugin-import": "2.8.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "7.4.0",
+    "eslint-plugin-redux-saga": "^0.6.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
@@ -35,6 +37,7 @@
     "react": "^16.2.0",
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.2.0",
+    "redux-saga": "^0.16.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -89,6 +92,140 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
-  }
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "env": {
+      "browser": true,
+      "node": true,
+      "jest": true,
+      "es6": true
+    },
+    "plugins": [
+      "redux-saga",
+      "react",
+      "jsx-a11y"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "import/imports-first": 0,
+      "import/newline-after-import": 0,
+      "import/no-dynamic-require": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/no-named-as-default": 0,
+      "import/no-unresolved": 2,
+      "import/prefer-default-export": 0,
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "jsx-a11y/aria-props": 2,
+      "jsx-a11y/heading-has-content": 0,
+      "jsx-a11y/href-no-hash": 2,
+      "jsx-a11y/label-has-for": 2,
+      "jsx-a11y/mouse-events-have-key-events": 2,
+      "jsx-a11y/role-has-required-aria-props": 2,
+      "jsx-a11y/role-supports-aria-props": 2,
+      "max-len": 0,
+      "newline-per-chained-call": 0,
+      "no-confusing-arrow": 0,
+      "no-console": 1,
+      "no-use-before-define": 0,
+      "no-underscore-dangle": 0,
+      "prefer-template": 2,
+      "class-methods-use-this": 0,
+      "react/forbid-prop-types": 0,
+      "react/jsx-first-prop-new-line": [
+        2,
+        "multiline"
+      ],
+      "react/jsx-filename-extension": 0,
+      "react/jsx-no-target-blank": 0,
+      "react/require-default-props": 2,
+      "react/require-extension": 0,
+      "react/self-closing-comp": 0,
+      "react/no-array-index-key": 0,
+      "redux-saga/no-yield-in-race": 2,
+      "redux-saga/yield-effects": 2,
+      "require-yield": 0,
+      "import/no-webpack-loader-syntax": 0,
+      "semi": [
+        1,
+        "never"
+      ]
+    },
+    "settings": {
+      "import/resolver": {
+        "webpack": {
+          "config": "./internals/webpack/webpack.prod.babel.js"
+        }
+      }
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "plugins": [
+      "stylelint-order"
+    ],
+    "rules": {
+      "color-hex-case": "lower",
+      "font-family-name-quotes": "always-where-recommended",
+      "number-leading-zero": "never",
+      "string-quotes": "single",
+      "order/properties-alphabetical-order": true,
+      "property-no-unknown": [
+        true,
+        {
+          "ignoreProperties": [
+            "composes",
+            "border-top-radius",
+            "border-right-radius",
+            "border-bottom-radius",
+            "border-left-radius"
+          ]
+        }
+      ],
+      "declaration-empty-line-before": "never",
+      "selector-pseudo-class-no-unknown": [
+        true,
+        {
+          "ignorePseudoClasses": [
+            "global"
+          ]
+        }
+      ],
+      "comment-empty-line-before": [
+        "always",
+        {
+          "except": "first-nested",
+          "ignore": "after-comment"
+        }
+      ],
+      "indentation": 2
+    }
+  },
+  "lint-staged": {
+    "*.js": "lint:eslint"
+  },
+  "pre-commit": "lint:staged"
 }
