@@ -1,13 +1,41 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-class App extends Component {
+import { requestWord } from './actions/game'
+
+import styles from './styles/index.css'
+
+class App extends PureComponent {
+  componentDidMount() {
+    const { actions } = this.props
+
+    actions.requestWord()
+  }
+
   render() {
     return (
-      <div className="App">
-
+      <div className={styles.wrapper}>
+        App
       </div>
     )
   }
 }
 
-export default App
+App.displayName = 'App'
+
+App.propTypes = {
+  actions: PropTypes.object.isRequired,
+}
+
+App.defaultProps = {}
+
+const mapDispatchToProps = (dispatch) => {
+  const actions = Object.assign({}, { requestWord })
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)
