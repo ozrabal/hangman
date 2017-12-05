@@ -121,7 +121,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-
+emitWarning: true
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -240,6 +240,7 @@ module.exports = {
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In production, it will be an empty string unless you specify "homepage"
     // in `package.json`, in which case it will be the pathname of that URL.
+    new webpack.NoEmitOnErrorsPlugin(),
     new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
