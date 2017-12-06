@@ -9,15 +9,11 @@ export const requestWord = () => ({
 })
 
 export const receivedWord = (word) => ({
-  payload: {
-    word,
-  },
+  word,
   type: types.RECEIVED_WORD,
 })
 
 export const errorReceivingWord = (error) => ({
-  payload: {
-    error,
-  },
+  error,
   type: types.ERROR_RECEIVING_WORD,
 })
