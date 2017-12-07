@@ -1,18 +1,17 @@
-import { takeLatest, put, take, cancel } from 'redux-saga/effects'
+import { takeLatest, put, take, cancel, call } from 'redux-saga/effects'
 import { LOCATION_CHANGE } from 'react-router-redux'
 
 import { types, receivedWord, errorReceivingWord } from '../actions/game'
-
-// mocks
-import word from '../mocks/word.json'
+import request from '../api/request'
+import endpoints from '../api/endpoints'
 
 export function* loadWord() {
-  const resp = word
-  // const resp = {error: 'error ERROR_RECEIVING_WORD'}
-  // TODO call API
-  yield (!resp.error)
-    ? put(receivedWord(resp.word))
-    : put(errorReceivingWord(resp.error))
+  try {
+    const response = yield call(request, endpoints.GET_WORD, { method: 'GET' })
+    yield put(receivedWord(response.word))
+  } catch (error) {
+    yield put(errorReceivingWord(error))
+  }
 }
 
 export function* loadWordLifecycle() {
