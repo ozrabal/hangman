@@ -14,7 +14,7 @@ export const initialState = fromJS({})
   .set('word', null)
   .set('fetching', false)
 
-function gameReducer(state = initialState, action = {}) {
+function game(state = initialState, action = {}) {
   switch (action.type) {
     case REQUEST_WORD:
       return state
@@ -35,4 +35,4 @@ function gameReducer(state = initialState, action = {}) {
   }
 }
 
-export default gameReducer
+export default game
