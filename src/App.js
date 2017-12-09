@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { requestWord } from './actions/game'
+import Word from './containers/word'
 
 import styles from './styles/index.css'
 
@@ -17,7 +18,7 @@ class App extends PureComponent {
   render() {
     return (
       <div className={styles.wrapper}>
-        App
+        <Word />
       </div>
     )
   }
