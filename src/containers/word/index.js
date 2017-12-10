@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import ImmutablePropTypes from 'react-immutable-proptypes'
+import Immutable from 'immutable'
 
 import Word from './component'
 
 export class WordContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { word } = this.props
+
     return (
       <Word word={word} />
     )
@@ -16,15 +18,15 @@ export class WordContainer extends React.Component { // eslint-disable-line reac
 WordContainer.displayName = 'WordContainer'
 
 WordContainer.propTypes = {
-  word: PropTypes.string,
+  word: ImmutablePropTypes.list, // eslint-disable-line react/no-typos
 }
 
 WordContainer.defaultProps = {
-  word: null,
+  word: new Immutable.List(),
 }
 
 const makeMapStateToProps = (state) => ({
-  word: state.game.get('word'),
+  word: state.game.getIn(['word']),
 })
 
 export default connect(makeMapStateToProps)(WordContainer)

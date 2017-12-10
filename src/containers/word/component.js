@@ -1,21 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import ImmutablePropTypes from 'react-immutable-proptypes'
+import Immutable from 'immutable'
 
 import styles from './styles.css'
 
 export const Word = ({ word }) => (
-
   <div className={styles.wordWrapper}>{word}</div>
 )
 
 Word.displayName = 'Word'
 
 Word.propTypes = {
-  word: PropTypes.string,
+  word: ImmutablePropTypes.list, // eslint-disable-line react/no-typos
 }
 
 Word.defaultProps = {
-  word: null,
+  word: new Immutable.List(),
 }
 
 

@@ -25,7 +25,7 @@ function game(state = initialState, action = {}) {
     case RECEIVED_WORD:
       return state
         .setIn(['fetching'], false)
-        .setIn(['word'], action.word.split(''))
+        .setIn(['word'], new Immutable.List(action.word.split('')))
 
     case ERROR_RECEIVING_WORD:
       return state
