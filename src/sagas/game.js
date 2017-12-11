@@ -8,7 +8,7 @@ import endpoints from '../api/endpoints'
 export function* loadWord() {
   try {
     const response = yield call(request, endpoints.GET_WORD, { method: 'GET' })
-    yield put(receivedWord(response.word))
+    yield put(receivedWord(response.word.toUpperCase()))
   } catch (error) {
     yield put(errorReceivingWord(error))
   }
