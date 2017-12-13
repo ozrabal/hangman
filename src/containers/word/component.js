@@ -5,7 +5,9 @@ import Immutable from 'immutable'
 import styles from './styles.css'
 
 export const Word = ({ word }) => (
-  <div className={styles.wordWrapper}>{word}</div>
+  <div className={styles.wordWrapper}>
+    { word.map((index) => (!index.masked ? index.letter : '_')) }
+  </div>
 )
 
 Word.displayName = 'Word'

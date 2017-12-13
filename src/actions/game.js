@@ -22,17 +22,17 @@ export const errorReceivingWord = (error) => ({
   type: types.ERROR_RECEIVING_WORD,
 })
 
-export const maskWord = (masked) => ({
-  masked,
-  type: types.MASK_WORD,
-})
+// export const maskWord = (masked) => ({
+//   masked,
+//   type: types.MASK_WORD,
+// })
 
 export const keyPressed = (key) => ({
   key,
   type: types.KEY_PRESSED,
 })
 
-export const checkLetter = (masked) => ({
-  masked,
+export const checkLetter = (word) => ({
+  word,
   type: types.CHECK_LETTER,
 })
