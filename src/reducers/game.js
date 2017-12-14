@@ -51,7 +51,7 @@ function game(state = initialState, action = {}) {
     case CHECK_WIN:
       return state
         .setIn(['win'], action.win)
-        .setIn(['attempts'], () => (action.win ? 0 : state.get('attempts')))
+        .setIn(['attempts'], action.win ? 0 : state.get('attempts'))
     /* case SET_MISSED_LETTER:
       return state
         .setIn()
