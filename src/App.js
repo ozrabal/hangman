@@ -21,6 +21,13 @@ class App extends PureComponent {
     actions.requestWord()
   }
 
+  componentDidUpdate() {
+    const { attempts } = this.props
+    if (attempts === 0) {
+      document.removeEventListener('keydown', this.onKeyDown, false)
+    }
+  }
+
   onKeyDown(event) {
     const { actions } = this.props
     actions.keyPressed(event.key)
@@ -39,9 +46,14 @@ App.displayName = 'App'
 
 App.propTypes = {
   actions: PropTypes.object.isRequired,
+  attempts: PropTypes.number.isRequired,
 }
 
 App.defaultProps = {}
+
+const mapStateToProps = (state) => ({
+  attempts: state.game.getIn(['attempts']),
+})
 
 const mapDispatchToProps = (dispatch) => {
   const actions = Object.assign({}, { requestWord, keyPressed })
@@ -50,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
