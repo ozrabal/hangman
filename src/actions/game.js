@@ -6,6 +6,7 @@ export const types = {
   MASK_WORD: 'MASK_WORD',
   KEY_PRESSED: 'KEY_PRESSED',
   CHECK_LETTER: 'CHECK_LETTER',
+  SET_MISSED_LETTER: 'SET_MISSED_LETTER',
   CHECK_WIN: 'CHECK_WIN',
 }
 
@@ -31,6 +32,11 @@ export const keyPressed = (key) => ({
 export const checkLetter = (word) => ({
   word,
   type: types.CHECK_LETTER,
+})
+
+export const setMissedLetter = (letter) => ({
+  letter,
+  type: types.SET_MISSED_LETTER,
 })
 
 export const checkWin = (win) => ({

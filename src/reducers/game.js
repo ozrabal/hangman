@@ -10,7 +10,7 @@ const {
   KEY_PRESSED,
   CHECK_LETTER,
   CHECK_WIN,
-  // SET_MISSED_LETTER,
+  SET_MISSED_LETTER,
 } = types
 
 export const initialState = fromJS({})
@@ -21,6 +21,7 @@ export const initialState = fromJS({})
   .set('attempts', 11)
   .set('win', false)
   .set('keysPressed', new Immutable.List())
+  .set('missed', new Immutable.List())
 
 function game(state = initialState, action = {}) {
   switch (action.type) {
@@ -52,10 +53,11 @@ function game(state = initialState, action = {}) {
       return state
         .setIn(['win'], action.win)
         .setIn(['attempts'], action.win ? 0 : state.get('attempts'))
-    /* case SET_MISSED_LETTER:
+
+    case SET_MISSED_LETTER:
       return state
-        .setIn()
-*/
+        .setIn(['missed'], new Immutable.List(state.get('missed', []).push(action.letter)))
+
     default:
       return state
   }
