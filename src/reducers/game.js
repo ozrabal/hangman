@@ -7,7 +7,6 @@ const {
   REQUEST_WORD,
   RECEIVED_WORD,
   ERROR_RECEIVING_WORD,
-  MASK_WORD,
   KEY_PRESSED,
   CHECK_LETTER,
 } = types
@@ -15,7 +14,6 @@ const {
 export const initialState = fromJS({})
   .set('error', false)
   .set('word', new Immutable.List())
-  .set('masked', new Immutable.List())
   .set('fetching', false)
   .set('letter', null)
   .set('keysPressed', new Immutable.List())
@@ -29,16 +27,12 @@ function game(state = initialState, action = {}) {
     case RECEIVED_WORD:
       return state
         .setIn(['fetching'], false)
-        .setIn(['word'], new Immutable.List(action.word.split('')))
+        .setIn(['word'], new Immutable.List(action.word))
 
     case ERROR_RECEIVING_WORD:
       return state
         .setIn(['fetching'], false)
         .setIn(['error'], action.error)
-
-    case MASK_WORD:
-      return state
-        .setIn(['masked'], action.masked)
 
     case KEY_PRESSED:
       return state
@@ -47,7 +41,7 @@ function game(state = initialState, action = {}) {
 
     case CHECK_LETTER:
       return state
-        .setIn(['masked'], action.masked)
+        .setIn(['word'], new Immutable.List(action.word))
 
     default:
       return state
