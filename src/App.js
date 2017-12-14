@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import { requestWord, keyPressed } from './actions/game'
 import Word from './containers/word'
-
+import Overlay from './containers/overlay'
 import styles from './styles/index.css'
 
 class App extends PureComponent {
@@ -34,8 +34,10 @@ class App extends PureComponent {
   }
 
   render() {
+    const { win } = this.props
     return (
       <div className={styles.wrapper}>
+        { win && <Overlay />}
         <Word />
       </div>
     )
@@ -47,12 +49,14 @@ App.displayName = 'App'
 App.propTypes = {
   actions: PropTypes.object.isRequired,
   attempts: PropTypes.number.isRequired,
+  win: PropTypes.bool.isRequired,
 }
 
 App.defaultProps = {}
 
 const mapStateToProps = (state) => ({
   attempts: state.game.getIn(['attempts']),
+  win: state.game.getIn(['win']),
 })
 
 const mapDispatchToProps = (dispatch) => {
