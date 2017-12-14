@@ -6,6 +6,7 @@ export const types = {
   MASK_WORD: 'MASK_WORD',
   KEY_PRESSED: 'KEY_PRESSED',
   CHECK_LETTER: 'CHECK_LETTER',
+  CHECK_WIN: 'CHECK_WIN',
 }
 
 export const requestWord = () => ({
@@ -22,11 +23,6 @@ export const errorReceivingWord = (error) => ({
   type: types.ERROR_RECEIVING_WORD,
 })
 
-// export const maskWord = (masked) => ({
-//   masked,
-//   type: types.MASK_WORD,
-// })
-
 export const keyPressed = (key) => ({
   key,
   type: types.KEY_PRESSED,
@@ -35,4 +31,9 @@ export const keyPressed = (key) => ({
 export const checkLetter = (word) => ({
   word,
   type: types.CHECK_LETTER,
+})
+
+export const checkWin = (win) => ({
+  win,
+  type: types.CHECK_WIN,
 })

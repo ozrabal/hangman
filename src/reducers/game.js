@@ -9,6 +9,7 @@ const {
   ERROR_RECEIVING_WORD,
   KEY_PRESSED,
   CHECK_LETTER,
+  CHECK_WIN,
   // SET_MISSED_LETTER,
 } = types
 
@@ -18,6 +19,7 @@ export const initialState = fromJS({})
   .set('fetching', false)
   .set('letter', null)
   .set('attempts', 11)
+  .set('win', false)
   .set('keysPressed', new Immutable.List())
 
 function game(state = initialState, action = {}) {
@@ -46,6 +48,10 @@ function game(state = initialState, action = {}) {
         .setIn(['attempts'], state.get('attempts') - 1)
         .setIn(['word'], new Immutable.List(action.word))
 
+    case CHECK_WIN:
+      return state
+        .setIn(['win'], action.win)
+        .setIn(['attempts'], () => (action.win ? 0 : state.get('attempts')))
     /* case SET_MISSED_LETTER:
       return state
         .setIn()

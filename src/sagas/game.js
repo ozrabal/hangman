@@ -1,7 +1,7 @@
 import { takeLatest, put, take, cancel, call, select } from 'redux-saga/effects'
 import { LOCATION_CHANGE } from 'react-router-redux'
 import { getWord, getLetter } from '../selectors'
-import { types, receivedWord, errorReceivingWord, checkLetter } from '../actions/game'
+import { types, receivedWord, errorReceivingWord, checkLetter, checkWin } from '../actions/game'
 import request from '../api/request'
 import endpoints from '../api/endpoints'
 
@@ -25,9 +25,20 @@ export function* makeCheckLetter() {
   yield put(checkLetter(unmasked))
 }
 
+export function* makeCheckWin() {
+  const word = yield select(getWord)
+  const index = word.findIndex((i) => (i.masked === true))
+  if (index < 0) {
+    yield put(checkWin(true))
+  } else {
+    yield put(checkWin(false))
+  }
+}
+
 export function* loadWordLifecycle() {
   const watcher = yield takeLatest(types.REQUEST_WORD, loadWord)
   yield takeLatest(types.KEY_PRESSED, makeCheckLetter)
+  yield takeLatest(types.CHECK_LETTER, makeCheckWin)
   yield take(LOCATION_CHANGE)
   yield cancel(watcher)
 }
