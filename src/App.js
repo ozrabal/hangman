@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import { requestWord, keyPressed } from './actions/game'
+import { validKey } from './utils'
 import Word from './containers/word'
 import MissedLetters from './components/MissedLetters'
 import Overlay from './containers/overlay'
@@ -32,7 +33,9 @@ class App extends PureComponent {
 
   onKeyDown(event) {
     const { actions } = this.props
-    actions.keyPressed(event.key)
+    if (validKey(event.keyCode)) {
+      actions.keyPressed(event.key)
+    }
   }
 
   render() {
