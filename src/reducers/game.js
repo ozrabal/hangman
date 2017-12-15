@@ -50,7 +50,6 @@ function game(state = initialState, action = {}) {
 
     case CHECK_LETTER:
       return state
-        .setIn(['attempts'], state.get('attempts') - 1)
         .setIn(['word'], new Immutable.List(action.word))
 
     case CHECK_WIN:
@@ -60,6 +59,7 @@ function game(state = initialState, action = {}) {
 
     case SET_MISSED_LETTER:
       return state
+        .setIn(['attempts'], state.get('attempts') - 1)
         .setIn(['missed'], new Immutable.List(state.get('missed', []).push(action.letter)))
 
     default:
