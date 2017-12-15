@@ -4,7 +4,6 @@ import { getWord, getLetter, getKeysPressed } from '../selectors'
 import { types, receivedWord, errorReceivingWord, checkLetter, checkWin, setMissedLetter, keyChecked } from '../actions/game'
 import request from '../api/request'
 import endpoints from '../api/endpoints'
-import Immutable, { find } from 'immutable'
 
 export function* loadWord() {
   try {
