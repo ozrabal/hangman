@@ -2,9 +2,11 @@ import React, { PureComponent } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import { requestWord, keyPressed } from './actions/game'
 import Word from './containers/word'
+import MissedLetters from './components/MissedLetters'
 import Overlay from './containers/overlay'
 import styles from './styles/index.css'
 
@@ -34,11 +36,12 @@ class App extends PureComponent {
   }
 
   render() {
-    const { win } = this.props
+    const { win, missed } = this.props
     return (
       <div className={styles.wrapper}>
         { win && <Overlay />}
         <Word />
+        <MissedLetters letters={missed} />
       </div>
     )
   }
@@ -50,6 +53,7 @@ App.propTypes = {
   actions: PropTypes.object.isRequired,
   attempts: PropTypes.number.isRequired,
   win: PropTypes.bool.isRequired,
+  missed: ImmutablePropTypes.list.isRequired, // eslint-disable-line react/no-typos
 }
 
 App.defaultProps = {}
@@ -57,6 +61,7 @@ App.defaultProps = {}
 const mapStateToProps = (state) => ({
   attempts: state.game.getIn(['attempts']),
   win: state.game.getIn(['win']),
+  missed: state.game.getIn(['missed']),
 })
 
 const mapDispatchToProps = (dispatch) => {
