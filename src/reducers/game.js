@@ -8,6 +8,7 @@ const {
   RECEIVED_WORD,
   ERROR_RECEIVING_WORD,
   KEY_PRESSED,
+  KEY_CHECKED,
   CHECK_LETTER,
   CHECK_WIN,
   SET_MISSED_LETTER,
@@ -39,10 +40,13 @@ function game(state = initialState, action = {}) {
         .setIn(['fetching'], false)
         .setIn(['error'], action.error)
 
+    case KEY_CHECKED:
+      return state
+        .setIn(['keysPressed'], new Immutable.List(state.get('keysPressed', []).push(action.key)))
+
     case KEY_PRESSED:
       return state
         .setIn(['letter'], action.key)
-        .setIn(['keysPressed'], new Immutable.List(state.get('keysPressed', []).push(action.key)))
 
     case CHECK_LETTER:
       return state
