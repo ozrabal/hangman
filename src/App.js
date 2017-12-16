@@ -7,6 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import { requestWord, keyPressed } from './actions/game'
 import { validKey } from './utils'
 import Word from './containers/word'
+import Guy from './components/Guy'
 import MissedLetters from './components/MissedLetters'
 import Overlay from './containers/overlay'
 import styles from './styles/index.css'
@@ -39,12 +40,18 @@ class App extends PureComponent {
   }
 
   render() {
-    const { win, lost, missed } = this.props
+    const {
+      win,
+      lost,
+      missed,
+      attempts,
+    } = this.props
     return (
       <div className={styles.wrapper}>
         {(win || lost) && <Overlay />}
         <Word />
         <MissedLetters letters={missed} />
+        <Guy stage={attempts} />
       </div>
     )
   }
