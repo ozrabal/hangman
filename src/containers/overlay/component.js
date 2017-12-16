@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 
 import styles from './styles.css'
 
-export const Overlay = ({ text, onButtonClick }) => (
+export const Overlay = ({ win, lost, onButtonClick }) => (
   <div className={styles.overlayWrapper}>
-    {text}
+    {win && <p>You Win</p>}
+    {lost && <p>You Lost</p>}
     <button onClick={onButtonClick} />
   </div>
 )
@@ -13,13 +14,9 @@ export const Overlay = ({ text, onButtonClick }) => (
 Overlay.displayName = 'Overlay'
 
 Overlay.propTypes = {
-  text: PropTypes.string,
+  win: PropTypes.bool.isRequired,
+  lost: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired,
 }
-
-Overlay.defaultProps = {
-  text: null,
-}
-
 
 export default Overlay

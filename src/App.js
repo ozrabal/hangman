@@ -39,10 +39,10 @@ class App extends PureComponent {
   }
 
   render() {
-    const { win, missed } = this.props
+    const { win, lost, missed } = this.props
     return (
       <div className={styles.wrapper}>
-        { win && <Overlay />}
+        {(win || lost) && <Overlay />}
         <Word />
         <MissedLetters letters={missed} />
       </div>
@@ -56,6 +56,7 @@ App.propTypes = {
   actions: PropTypes.object.isRequired,
   attempts: PropTypes.number.isRequired,
   win: PropTypes.bool.isRequired,
+  lost: PropTypes.bool.isRequired,
   missed: ImmutablePropTypes.list.isRequired, // eslint-disable-line react/no-typos
 }
 
@@ -64,6 +65,7 @@ App.defaultProps = {}
 const mapStateToProps = (state) => ({
   attempts: state.game.getIn(['attempts']),
   win: state.game.getIn(['win']),
+  lost: state.game.getIn(['lost']),
   missed: state.game.getIn(['missed']),
 })
 

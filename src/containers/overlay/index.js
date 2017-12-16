@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 // import ImmutablePropTypes from 'react-immutable-proptypes'
 // import Immutable from 'immutable'
 
@@ -16,24 +17,28 @@ export class OverlayContainer extends React.Component { // eslint-disable-line r
   }
 
   render() {
+    const { win, lost } = this.props
     return (
-      <Overlay text="win" onButtonClick={this.onButtonClick} />
+      <Overlay win={win} lost={lost} onButtonClick={this.onButtonClick} />
     )
   }
 }
 
 OverlayContainer.displayName = 'OverlayContainer'
 
-// WordContainer.propTypes = {
-//   word: ImmutablePropTypes.list, // eslint-disable-line react/no-typos
-// }
+OverlayContainer.propTypes = {
+  win: PropTypes.bool,
+  lost: PropTypes.bool,
+}
 
-// WordContainer.defaultProps = {
-//   word: new Immutable.List(),
-// }
+OverlayContainer.defaultProps = {
+  win: false,
+  lost: false,
+}
 
-// const makeMapStateToProps = (state) => ({
-//   word: state.game.getIn(['word']),
-// })
+const mapStateToProps = (state) => ({
+  win: state.game.getIn(['win']),
+  lost: state.game.getIn(['lost']),
+})
 
-export default connect()(OverlayContainer)
+export default connect(mapStateToProps)(OverlayContainer)
