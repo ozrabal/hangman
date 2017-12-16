@@ -45,7 +45,8 @@ export const setMissedLetter = (letter) => ({
   type: types.SET_MISSED_LETTER,
 })
 
-export const checkWin = (win) => ({
+export const checkWin = (win, lost) => ({
   win,
+  lost,
   type: types.CHECK_WIN,
 })

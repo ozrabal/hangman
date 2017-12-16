@@ -21,6 +21,7 @@ export const initialState = fromJS({})
   .set('letter', null)
   .set('attempts', 11)
   .set('win', false)
+  .set('lost', false)
   .set('keysPressed', new Immutable.List())
   .set('missed', new Immutable.List())
 
@@ -55,6 +56,7 @@ function game(state = initialState, action = {}) {
     case CHECK_WIN:
       return state
         .setIn(['win'], action.win)
+        .setIn(['lost'], action.lost)
         .setIn(['attempts'], action.win ? 0 : state.get('attempts'))
 
     case SET_MISSED_LETTER:

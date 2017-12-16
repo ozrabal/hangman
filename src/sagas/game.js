@@ -1,6 +1,6 @@
 import { takeLatest, put, take, cancel, call, select } from 'redux-saga/effects'
 import { LOCATION_CHANGE } from 'react-router-redux'
-import { getWord, getLetter, getKeysPressed } from '../selectors'
+import { getWord, getLetter, getKeysPressed, getAttempts } from '../selectors'
 import { types, receivedWord, errorReceivingWord, checkLetter, checkWin, setMissedLetter, keyChecked } from '../actions/game'
 import request from '../api/request'
 import endpoints from '../api/endpoints'
@@ -41,11 +41,14 @@ export function* makeCheckLetter() {
 
 export function* makeCheckWin() {
   const word = yield select(getWord)
-  const index = word.findIndex((i) => (i.masked === true))
-  if (index < 0) {
-    yield put(checkWin(true))
+  const attempts = yield select(getAttempts)
+  if (attempts - 1 === 0) {
+    yield put(checkWin(false, true))
   } else {
-    yield put(checkWin(false))
+    const index = word.findIndex((i) => (i.masked === true))
+    if (index < 0) {
+      yield put(checkWin(true, false))
+    }
   }
 }
 
