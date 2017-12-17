@@ -5,8 +5,8 @@ import styles from './styles.css'
 
 export const Overlay = ({ win, lost, onButtonClick }) => (
   <div className={styles.overlayWrapper}>
-    {win && <p>You Win</p>}
-    {lost && <p>You Lost</p>}
+    {win && <h1>You Win</h1>}
+    {lost && <h1>You Lost</h1>}
     <button onClick={onButtonClick} />
   </div>
 )
