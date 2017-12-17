@@ -4,6 +4,7 @@ import Immutable, { fromJS } from 'immutable'
 import { types } from '../actions/game'
 
 const {
+  INIT_GAME,
   REQUEST_WORD,
   RECEIVED_WORD,
   ERROR_RECEIVING_WORD,
@@ -27,6 +28,9 @@ export const initialState = fromJS({})
 
 function game(state = initialState, action = {}) {
   switch (action.type) {
+    case INIT_GAME:
+      return initialState
+
     case REQUEST_WORD:
       return state
         .setIn(['fetching'], true)

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import { requestWord, keyPressed } from './actions/game'
+import { initGame, keyPressed } from './actions/game'
 import { validKey } from './utils'
 import Word from './containers/word'
 import Guy from './components/Guy'
@@ -21,15 +21,7 @@ class App extends PureComponent {
   componentDidMount() {
     const { actions } = this.props
     document.addEventListener('keydown', this.onKeyDown, false)
-
-    actions.requestWord()
-  }
-
-  componentDidUpdate() {
-    const { attempts } = this.props
-    if (attempts === 0) {
-      document.removeEventListener('keydown', this.onKeyDown, false)
-    }
+    actions.initGame()
   }
 
   onKeyDown(event) {
@@ -77,7 +69,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => {
-  const actions = Object.assign({}, { requestWord, keyPressed })
+  const actions = Object.assign({}, { initGame, keyPressed })
   return {
     actions: bindActionCreators(actions, dispatch),
   }

@@ -1,25 +1,15 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-// import ImmutablePropTypes from 'react-immutable-proptypes'
-// import Immutable from 'immutable'
-
+import { initGame } from '../../actions/game'
 import Overlay from './component'
 
 export class OverlayContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  constructor(props) {
-    super(props)
-    this.onButtonClick = this.onButtonClick.bind(this)
-  }
-
-  onButtonClick() {
-    console.log('click') // eslint-disable-line no-console
-  }
-
   render() {
-    const { win, lost } = this.props
+    const { win, lost, actions } = this.props
     return (
-      <Overlay win={win} lost={lost} onButtonClick={this.onButtonClick} />
+      <Overlay win={win} lost={lost} onButtonClick={actions.initGame} />
     )
   }
 }
@@ -27,6 +17,7 @@ export class OverlayContainer extends React.Component { // eslint-disable-line r
 OverlayContainer.displayName = 'OverlayContainer'
 
 OverlayContainer.propTypes = {
+  actions: PropTypes.object.isRequired,
   win: PropTypes.bool,
   lost: PropTypes.bool,
 }
@@ -41,4 +32,11 @@ const mapStateToProps = (state) => ({
   lost: state.game.getIn(['lost']),
 })
 
-export default connect(mapStateToProps)(OverlayContainer)
+const mapDispatchToProps = (dispatch) => {
+  const actions = Object.assign({}, { initGame })
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OverlayContainer)

@@ -5,7 +5,7 @@ import styles from './styles.css'
 
 export const Guy = ({ stage }) => (
   <div className={styles.guyWrapper}>
-    <div className={cx(styles.guy, styles[`stage${stage}`])}>folk</div>
+    <div className={cx(styles.guy, styles[`stage${stage}`])}></div>
   </div>
 )
 

@@ -53,7 +53,7 @@ export function* makeCheckWin() {
 }
 
 export function* loadWordLifecycle() {
-  const watcher = yield takeLatest(types.REQUEST_WORD, loadWord)
+  const watcher = yield takeLatest(types.INIT_GAME, loadWord)
   yield takeLatest(types.KEY_PRESSED, makeKeyPress)
   yield takeLatest(types.KEY_CHECKED, makeCheckLetter)
   yield takeLatest(types.CHECK_LETTER, makeCheckWin)

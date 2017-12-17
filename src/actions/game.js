@@ -1,4 +1,5 @@
 export const types = {
+  INIT_GAME: 'INIT_GAME',
   REQUEST_WORD: 'REQUEST_WORD',
   RECEIVED_WORD: 'RECEIVED_WORD',
   ERROR_RECEIVING_WORD: 'ERROR_RECEIVING_WORD',
@@ -10,6 +11,10 @@ export const types = {
   SET_MISSED_LETTER: 'SET_MISSED_LETTER',
   CHECK_WIN: 'CHECK_WIN',
 }
+
+export const initGame = () => ({
+  type: types.INIT_GAME,
+})
 
 export const requestWord = () => ({
   type: types.REQUEST_WORD,
