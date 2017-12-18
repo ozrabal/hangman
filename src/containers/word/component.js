@@ -2,11 +2,12 @@ import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import Immutable from 'immutable'
 
+import Letter from '../../components/Letter'
 import styles from './styles.css'
 
 export const Word = ({ word }) => (
   <div className={styles.wordWrapper}>
-    { word.map((index) => (!index.masked ? index.letter : '_')) }
+    { word.map((index, i) => (<Letter key={i} masked={index.masked} letter={index.letter} />))}
   </div>
 )
 

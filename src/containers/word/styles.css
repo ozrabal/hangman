@@ -1,4 +1,8 @@
+
 .wordWrapper {
-  background-color: #efefef;
-  color: #ffffff;
+position: relative;
+z-index: 1;
+font-size: 38px;
+line-height: 20.51px;
+margin: 5px 36px;
 }

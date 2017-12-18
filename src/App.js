@@ -41,9 +41,10 @@ class App extends PureComponent {
     return (
       <div className={styles.wrapper}>
         {(win || lost) && <Overlay />}
-        <Word />
         <MissedLetters letters={missed} />
         <Guy stage={attempts} />
+
+        <Word />
       </div>
     )
   }
