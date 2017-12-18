@@ -1,0 +1,18 @@
+@import '../../styles/variables.css';
+
+.letterWrapper {
+  background-color: rgba(83, 85, 93, 0.95);
+  border-radius: 5px;
+  color: var(--letterColor);
+  display: inline-block;
+  height: 70px;
+  letter-spacing: 0;
+  line-height: 74px;
+  text-align: center;
+  margin: 5.6px 5.6px 5.6px 0;
+  vertical-align: text-bottom;
+  width: 62px;
+}
+.letterWrapper:last-child {
+  margin-right: 0;
+}
