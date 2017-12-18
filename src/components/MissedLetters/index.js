@@ -1,8 +1,12 @@
 import React from 'react'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import styles from './styles.css'
 
 export const MissedLetters = ({ letters }) => (
-  <div>{letters}</div>
+  <div className={styles.missedLetters}>
+    <h2>You missed:</h2>
+    <span>{letters}</span>
+  </div>
 )
 
 MissedLetters.propTypes = {

@@ -1,0 +1,20 @@
+@import '../../styles/variables.css';
+
+.missedLetters {
+  float: right;
+  margin: 36px;
+  width: 478px;
+}
+
+h2 {
+  color: var(--pageTextColor);
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+span {
+  color: var(--missedLetterColor);
+  font-size: 46px;
+  letter-spacing: 10px;
+}
