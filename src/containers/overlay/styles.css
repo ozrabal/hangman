@@ -1,7 +1,6 @@
 .overlayWrapper {
   align-items: center;
-  background-color: rgb(59, 65, 99);
-  background-color: rgba(59, 65, 99, 0.8);
+  background-color: color(var(--pageBgColor) a(80%));
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -14,6 +13,23 @@
 }
 
 h1 {
+  color: var(--letterColor);
   font-size: 46px;
   margin-bottom: 16px;
+}
+
+button {
+  background-color: transparent;
+  border: 2px dashed var(--overlayButtonColor);
+  border-radius: 30px;
+  color: var(--overlayButtonColor);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 42px;
+  text-decoration: none;
+}
+
+button:hover {
+  background-color: var(--pageBgColor);
+  cursor: pointer;
 }

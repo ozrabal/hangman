@@ -7,7 +7,7 @@ export const Overlay = ({ win, lost, onButtonClick }) => (
   <div className={styles.overlayWrapper}>
     {win && <h1>You Win</h1>}
     {lost && <h1>You Lost</h1>}
-    <button onClick={onButtonClick} />
+    <button onClick={onButtonClick}>New word</button>
   </div>
 )
 

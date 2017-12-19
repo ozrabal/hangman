@@ -1,8 +1,7 @@
-
 .wordWrapper {
-position: relative;
-z-index: 1;
-font-size: 38px;
-line-height: 20.51px;
-margin: 5px 36px;
+  font-size: 38px;
+  line-height: 20.51px;
+  margin: 5px 36px;
+  position: relative;
+  z-index: 1;
 }
