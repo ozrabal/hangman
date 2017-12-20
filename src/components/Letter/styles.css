@@ -1,7 +1,7 @@
 @import '../../styles/variables.css';
 
 .letterWrapper {
-  background-color: rgba(83, 85, 93, 0.95);
+  background-color: var(--pageTextColor);
   border-radius: 5px;
   color: var(--letterColor);
   display: inline-block;
