@@ -1,6 +1,5 @@
-import { takeLatest, put, take, cancel, call, select } from 'redux-saga/effects'
-import { LOCATION_CHANGE } from 'react-router-redux'
-import { getWord, getLetter, getKeysPressed, getAttempts } from '../selectors'
+import { takeLatest, put, call, select } from 'redux-saga/effects'
+import { getWord, getLetter, getKeysPressed, getAttempts, getWin, getLost } from '../selectors'
 import { types, receivedWord, errorReceivingWord, checkLetter, checkWin, setMissedLetter, keyChecked } from '../actions/game'
 import request from '../api/request'
 import endpoints from '../api/endpoints'
@@ -19,7 +18,9 @@ export function* loadWord() {
 export function* makeKeyPress() {
   const pressed = yield select(getKeysPressed)
   const letter = yield select(getLetter)
-  if (!pressed.includes(letter)) {
+  const win = yield select(getWin)
+  const lost = yield select(getLost)
+  if (!pressed.includes(letter) && !win && !lost) {
     yield put(keyChecked(letter))
   }
 }
@@ -53,12 +54,10 @@ export function* makeCheckWin() {
 }
 
 export function* loadWordLifecycle() {
-  const watcher = yield takeLatest(types.INIT_GAME, loadWord)
+  yield takeLatest(types.INIT_GAME, loadWord)
   yield takeLatest(types.KEY_PRESSED, makeKeyPress)
   yield takeLatest(types.KEY_CHECKED, makeCheckLetter)
   yield takeLatest(types.CHECK_LETTER, makeCheckWin)
-  yield take(LOCATION_CHANGE)
-  yield cancel(watcher)
 }
 
 export default loadWordLifecycle
