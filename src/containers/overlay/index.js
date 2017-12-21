@@ -7,9 +7,12 @@ import Overlay from './component'
 
 export class OverlayContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { win, lost, actions } = this.props
+    const {
+      win, lost, word, actions,
+    } = this.props
+    const w = word.flatMap((index) => [index.letter]).toJS()
     return (
-      <Overlay win={win} lost={lost} onButtonClick={actions.initGame} />
+      <Overlay win={win} lost={lost} word={w} onButtonClick={actions.initGame} />
     )
   }
 }
@@ -20,16 +23,19 @@ OverlayContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   win: PropTypes.bool,
   lost: PropTypes.bool,
+  word: PropTypes.object,
 }
 
 OverlayContainer.defaultProps = {
   win: false,
   lost: false,
+  word: {},
 }
 
 const mapStateToProps = (state) => ({
   win: state.game.getIn(['win']),
   lost: state.game.getIn(['lost']),
+  word: state.game.getIn(['word']),
 })
 
 const mapDispatchToProps = (dispatch) => {

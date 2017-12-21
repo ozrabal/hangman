@@ -21,6 +21,13 @@ h1 {
   margin-bottom: 16px;
 }
 
+.missingWord {
+  color: var(--overlayButtonColor);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
 button {
   background-color: transparent;
   border: 2px dashed var(--overlayButtonColor);
