@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render div lost 1`] = `
+<div
+  className={undefined}
+>
+  <h1>
+    You Lost
+  </h1>
+  <h2
+    className={undefined}
+  >
+    Word is: 
+  </h2>
+  <button
+    onClick={[Function]}
+  >
+    New word
+  </button>
+</div>
+`;
+
+exports[`should render div win 1`] = `
+<div
+  className={undefined}
+>
+  <h1>
+    You Win
+  </h1>
+  <h2
+    className={undefined}
+  >
+    Word is: 
+  </h2>
+  <button
+    onClick={[Function]}
+  >
+    New word
+  </button>
+</div>
+`;
