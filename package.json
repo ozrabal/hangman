@@ -43,7 +43,7 @@
     "postcss-short": "^4.1.0",
     "promise": "8.0.1",
     "prop-types": "^15.6.0",
-    "raf": "3.4.0",
+    "raf": "^3.4.0",
     "react": "^16.2.0",
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.2.0",
@@ -243,5 +243,8 @@
   "lint-staged": {
     "*.js": "lint:eslint"
   },
-  "pre-commit": "lint:staged"
+  "pre-commit": "lint:staged",
+  "devDependencies": {
+    "react-test-renderer": "^16.2.0"
+  }
 }
